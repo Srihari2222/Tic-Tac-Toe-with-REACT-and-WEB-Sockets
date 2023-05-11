@@ -1,0 +1,16 @@
+node_modules
+package
+package-lock
+react-client\public\manifest.json
+react-client\public\logo512.png
+react-client\public\logo192.png
+react-client\public\favicon.ico
+react-client\public\robots.txt
+react-client\src\components\ChooseIcon.js
+react-client\src\components\Icons.js
+react-client\src\components\temp.js
+react-client\src\App.css
+react-client\src\App.test.js
+react-client\src\logo.svg
+react-client\src\setupTests.js
+react-client\src\reportWebVitals.js
