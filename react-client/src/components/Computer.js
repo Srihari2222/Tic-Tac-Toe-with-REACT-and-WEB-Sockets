@@ -72,7 +72,7 @@ export default function Computer(props) {
                 const i=RandomValue-1;
                 const r=Math.floor(i/3);
                 const c=i%3;
-                if(Object.keys(numbers).length>0 && board[r][c]===0 && gameStatus[1])
+                if(Object.keys(numbers).length>0 && r>=0 && c>=0 && board[r][c]===0 && gameStatus[1])
                 {
                     const counter=[...playerCounter];
                     const winBoard=[...board];
@@ -80,8 +80,8 @@ export default function Computer(props) {
                     setWinBoard(winBoard);
                     counter[player?0:1]++;
                     setCounter(counter);
-                    if(counter[player?0:1])
-                    {
+            
+                    
                         if(winningCheck(player?1:2,r,c)){
                             setStatus([player?"You Won!!!":"You Lost, try New-Game!!!"],false);
                             const s=[...scores];
@@ -95,7 +95,7 @@ export default function Computer(props) {
                             s1[1]++;
                             setScores(s1);
                         }
-                    }
+                    
                         const numbers = {...robot};
                         delete numbers[i+1];
                         setPlayer(!player);
@@ -147,7 +147,7 @@ export default function Computer(props) {
         
 
     return (
-        <div className='srihari2'>
+        <div className='srihari2' style={{height:`${window.innerWidth<800?"80vh":""}`}}>
             <main>
                 <div className="grid">
                     <div className="top">

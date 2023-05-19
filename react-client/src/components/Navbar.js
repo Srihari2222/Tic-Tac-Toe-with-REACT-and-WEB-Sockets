@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ChooseIcon from './ChooseIcon';
 import { Link,useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react'
+
 export default function Navbar(props) {
     const navigate=useNavigate();
     const handleLogin=() => {
@@ -17,7 +18,8 @@ export default function Navbar(props) {
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">Tic-tac-toe</a>
+                
+                <a className="navbar-brand" href="/" style={{marginLeft:"10px"}}> <img src={require('./images/tic-tac-toe1.png')} href="/" alt='logo' className='w-10 h-11 object-contain' style={{height:"50px",weight:"20px",marginRight:"5px"}}/>Tic-tac-toe </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>

@@ -1,13 +1,19 @@
 import React from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import "./computer.css"
-export default function Home() {
+
+
+
+export default function Home(props) {
     const navigate=useNavigate();
     const handleComputer=() =>{
         navigate("/playwithcomputer");
     }
     const handleFriend =() =>{
-        navigate("playwithfriend");
+        navigate("/playwithfriend");
+    }
+    const handleOnline=()=>{
+        navigate("/playonline");
     }
     return (
         <>
@@ -21,7 +27,8 @@ export default function Home() {
             </div>
             <div className='double'>
                 <button onClick={handleComputer} type="button" className="btn btn-success btn-lg play-computer" style={{height:"100px"}}>Play With Computer</button>
-                <button onClick={handleFriend} type="button" className="btn btn-success btn-lg play-computer" style={{height:"100px"}}>Play With Friend</button>
+                <button onClick={handleFriend} type="button" className="btn btn-success btn-lg play-computer" style={{height:"100px"}}>Play With offlie Friend</button>
+                <button type="button" onClick={handleOnline} className="btn btn-success btn-lg play-computer" style={{height:"100px"}}>Play online</button>
             </div>
             </div>
         </div>

@@ -17,6 +17,7 @@
 html,
 body{
     height: 100%;
+    overflow-x: hidden;
     background-color:var(--dark-gray);
 }
 .srihari2{

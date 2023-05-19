@@ -17,7 +17,7 @@ export default function Game(props) {
         const i=event.target.id-1;
         const r=Math.floor(i/3);
         const c=i%3;
-        if(board[r][c]===0 && gameStatus[1])
+        if(r>=0 && c>=0 && board[r][c]===0 && gameStatus[1])
         {
             const counter=[...playerCounter];
             const winBoard=[...board];
@@ -71,7 +71,7 @@ export default function Game(props) {
         setScores([0,0,0]);
     }
     return (
-        <div className='srihari2'>
+        <div className='srihari2' style={{height:`${window.innerWidth<800?"80vh":""}`}}>
             <main>
                 <div className="grid">
                     <div className="top">
