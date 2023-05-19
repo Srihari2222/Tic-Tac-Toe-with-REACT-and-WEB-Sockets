@@ -13,6 +13,7 @@ const io= new Server(server,{
         pingTimeout: 60000,
     },
 });
+const PORT=process.env.PORT || 5000;
 function random_int()
 {
     return Math.floor(Math.random()*10000).toString();
@@ -81,6 +82,6 @@ io.on('connection',(socket)=>{
     })
 })
 
-server.listen(5000,()=>{
+server.listen(PORT,()=>{
     console.log("Server is running");
 });
