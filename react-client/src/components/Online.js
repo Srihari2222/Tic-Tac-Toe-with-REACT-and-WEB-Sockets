@@ -15,7 +15,7 @@ export default function Online() {
         // e.preventDefault();
         if(generatedRoomId===""){
             try {
-                const response = await axios.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom');
+                const response = await axios.get('/api/generateRoom');
                 const roomId = response.data.roomId;
                 setGeneratedRoomId(roomId);
                 localStorage.setItem('generatedRoomId', roomId);

@@ -22,7 +22,7 @@ function generateRoomId()
 {
     return random_int()+'-'+random_int()+'-'+random_int();
 }
-app.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom', (req, res) => {
+app.get('/api/generateRoom', (req, res) => {
     const roomId = generateRoomId();
     io.on('connection', (socket) => {
         socket.leaveAll();
