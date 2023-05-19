@@ -8,7 +8,7 @@ app.use(cors());
 const server=http.createServer(app);
 const io= new Server(server,{
     cors:{
-        origin:"https://tic1tac2toe3.netlify.app/",
+        origin:"https://tic1tac2toe3.netlify.app",
         methods:['POST','GET'],
         pingTimeout: 60000,
     },
@@ -22,7 +22,7 @@ function generateRoomId()
 {
     return random_int()+'-'+random_int()+'-'+random_int();
 }
-app.get('/api/generateRoom', (req, res) => {
+app.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom', (req, res) => {
     const roomId = generateRoomId();
     io.on('connection', (socket) => {
         socket.leaveAll();
