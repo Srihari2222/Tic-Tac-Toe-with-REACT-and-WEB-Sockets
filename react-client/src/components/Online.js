@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios';
+// import axios from 'axios';
 import { useState,useEffect } from 'react';
 import socket from '../connection/Socket';
 import {useNavigate} from "react-router-dom";
@@ -11,13 +11,22 @@ export default function Online() {
     const [warning,setWarning]=useState(false);
     const [generatedRoomId, setGeneratedRoomId] = useState(localStorage.getItem('generatedRoomId') || '');
     const [enteredID,setEnteredID]=useState("");
+    function random_int()
+    {
+        return Math.floor(Math.random()*10000).toString();
+    }
+    function generateRoomId()
+    {
+        return random_int()+'-'+random_int()+'-'+random_int();
+    }
     const handleGenerateClick = async (e) => {
         e.preventDefault();
         if(generatedRoomId===""){
             try {
+                const roomId = generateRoomId();
                 // const response = await axios.get('http://localhost:5000/api/generateRoom');
-                const response = await axios.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom');
-                const roomId = response.data.roomId;
+                // const response = await axios.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom');
+                socket.emit("generatejoin",roomId);    
                 setGeneratedRoomId(roomId);
                 localStorage.setItem('generatedRoomId', roomId);
             } catch (error) {
@@ -28,9 +37,7 @@ export default function Online() {
     };
     useEffect(()=>{
         setWarning(false);
-        setWaiting(false);
-
-    },[]);
+    },[waiting]);
     const handleExitRoom=(event)=>{
         localStorage.removeItem('generatedRoomId');
     }
@@ -47,13 +54,12 @@ export default function Online() {
         socket.on('roomsData', (rooms,size) => {
             key=[...rooms];
             console.log('Rooms:', rooms);
-            console.log(size);
             if(!key.includes(enteredID)){
                 setWarning(true);
                 return;
             }
             else if(size<=2)socket.emit("joinroom",enteredID);
-            else setWarning(true);
+            else setWarning(false);
 
             if(size===1)
             {

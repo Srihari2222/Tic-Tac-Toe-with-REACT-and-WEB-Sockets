@@ -23,16 +23,21 @@ function generateRoomId()
 {
     return random_int()+'-'+random_int()+'-'+random_int();
 }
-app.get('/api/generateRoom', (req, res) => {
-    const roomId = generateRoomId();
-    io.on('connection', (socket) => {
-        socket.leaveAll();
-        socket.join(roomId);
-    });
-    res.json({ roomId });
-});
+// app.get('/api/generateRoom', (req, res) => {
+//     const roomId = generateRoomId();
+//     io.on('connection', (socket) => {
+//         socket.leaveAll();
+//         socket.join(roomId);
+//     });
+//     res.json({ roomId });
+// });
 
 io.on('connection',(socket)=>{
+    socket.on('generatejoin',(roomId)=>{
+        console.log("hello");
+        socket.leaveAll();
+        socket.join(roomId);
+    })
     socket.on('joinroom',(roomId)=>{
         const rooms = io.sockets.adapter.rooms;
         if (rooms.get(roomId).size <= 2) {

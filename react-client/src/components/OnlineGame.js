@@ -69,6 +69,7 @@ export default function OnlineGame() {
             }
             else if(counter[Object.keys(counter)[0]]+counter[Object.keys(counter)[1]]===9)
             {
+                console.log("tie");
                 setStatus(["Its is a TIE!!!",false]);
                 const s1 ={...scores};
                 s1['ties']++;
