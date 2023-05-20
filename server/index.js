@@ -9,6 +9,7 @@ const server=http.createServer(app);
 const io= new Server(server,{
     cors:{
         origin:"https://tic1tac2toe3.netlify.app",
+        // origin:"http://localhost:3000",
         methods:['POST','GET'],
         pingTimeout: 60000,
     },
@@ -34,7 +35,6 @@ app.get('/api/generateRoom', (req, res) => {
 io.on('connection',(socket)=>{
     socket.on('joinroom',(roomId)=>{
         const rooms = io.sockets.adapter.rooms;
-        console.log(rooms.get(roomId).size);
         if (rooms.get(roomId).size <= 2) {
             console.log(io.sockets.adapter.rooms);
             socket.leaveAll();

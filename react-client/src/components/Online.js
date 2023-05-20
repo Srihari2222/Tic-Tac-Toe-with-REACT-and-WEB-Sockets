@@ -12,10 +12,11 @@ export default function Online() {
     const [generatedRoomId, setGeneratedRoomId] = useState(localStorage.getItem('generatedRoomId') || '');
     const [enteredID,setEnteredID]=useState("");
     const handleGenerateClick = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         if(generatedRoomId===""){
             try {
-                const response = await axios.get('/api/generateRoom');
+                // const response = await axios.get('http://localhost:5000/api/generateRoom');
+                const response = await axios.get('https://tic-tac-toe-v2z1.onrender.com/api/generateRoom');
                 const roomId = response.data.roomId;
                 setGeneratedRoomId(roomId);
                 localStorage.setItem('generatedRoomId', roomId);
@@ -25,6 +26,11 @@ export default function Online() {
             
         }
     };
+    useEffect(()=>{
+        setWarning(false);
+        setWaiting(false);
+
+    },[]);
     const handleExitRoom=(event)=>{
         localStorage.removeItem('generatedRoomId');
     }
@@ -67,8 +73,6 @@ export default function Online() {
         socket.on("navigateToWaitingPage",(player,Room)=>{
             navigate("/startgamepage",{ state: { Turn: player,id:socket.id,room:Room}});
         })
-        setWarning(false);
-        setWaiting(false);
     },[navigate]);
     
 
