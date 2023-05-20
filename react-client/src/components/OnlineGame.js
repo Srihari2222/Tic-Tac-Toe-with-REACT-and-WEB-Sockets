@@ -11,6 +11,7 @@ export default function OnlineGame() {
     const ID=location.state?.id;
     const Room=location.state?.room;
     const [turn,setTurn]=useState(PlayersTurn[0]===ID);
+    console.log(turn);
     const [shouldEmit,setShouldEmit]=useState(false);
     const [scores,setScores]=useState({[PlayersTurn[0]]:0,[PlayersTurn[1]]:0,'ties':0});
     const [gameStatus,setStatus]=useState(["inprogress",true]);

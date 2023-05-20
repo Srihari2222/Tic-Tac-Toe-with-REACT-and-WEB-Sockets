@@ -15,14 +15,14 @@ const io= new Server(server,{
     },
 });
 const PORT=process.env.PORT || 5000;
-function random_int()
-{
-    return Math.floor(Math.random()*10000).toString();
-}
-function generateRoomId()
-{
-    return random_int()+'-'+random_int()+'-'+random_int();
-}
+// function random_int()
+// {
+//     return Math.floor(Math.random()*10000).toString();
+// }
+// function generateRoomId()
+// {
+//     return random_int()+'-'+random_int()+'-'+random_int();
+// }
 // app.get('/api/generateRoom', (req, res) => {
 //     const roomId = generateRoomId();
 //     io.on('connection', (socket) => {
@@ -68,9 +68,9 @@ io.on('connection',(socket)=>{
     });
     socket.on("waitingover",(room)=>{
         const roomClients = Array.from(io.sockets.adapter.rooms.get(room)); 
-        const randomIndex = Math.floor(Math.random() * 2);
-        const player1 = roomClients[randomIndex];
-        const player2 = roomClients[1 - randomIndex];
+        // const randomIndex = Math.floor(Math.random() * 2);
+        const player1 = roomClients[0];
+        const player2 = roomClients[1];
         console.log("player1:"+player1);
         console.log("player2"+player2);
         io.to(room).emit('navigateToWaitingPage',[player1,player2],room);
